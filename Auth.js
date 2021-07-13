@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, Text, TextInput, View} from 'react-native';
+import {Button, Modal, StyleSheet, Text, TextInput, View} from 'react-native';
 import Auth0 from 'react-native-auth0';
 
 class Auth extends Component {
@@ -76,7 +76,8 @@ class Auth extends Component {
             <TextInput
               placeholder="Enter Phone"
               onChangeText={text => this.setState({phone: text})}
-              required
+              
+              
             />
             <Button
               title={LoginIn ? 'Processing...' : 'Get Code'}
@@ -89,10 +90,11 @@ class Auth extends Component {
               placeholder="Enter Code"
               value={code}
               onChangeText={text => this.setState({code: text})}
+              keyboardType="numeric"
             />
             <Button title="Login" onPress={this.loginUser} />
-            <View>
-              <Modal transparent={true} visible={isLoggedIn}>
+            <View style={styles.modalContainer}> 
+              <Modal transparent={false} visible={isLoggedIn} >
                 <View>
                   <View>
                     <Text> Login Successful 👍🏼🎉</Text>
@@ -115,4 +117,14 @@ class Auth extends Component {
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+    modalContainer:{
+        flex: 1, 
+        height: 900,
+        backgroundColor:'white'
+    }
+})
+
 export default Auth;
